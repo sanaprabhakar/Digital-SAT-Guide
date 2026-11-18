@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Digital SAT Playbook — First-Principles Study & Strategy Guide</title>
+  <meta name="description" content="A Structural Framework for Digital SAT Reading, Writing, Grammar, and Math — built from first principles by Prabhakar Sana." />
+
+  <!-- Open Graph / Link Preview Polish for Applications & Sharing -->
+  <meta property="og:title" content="The Digital SAT Playbook — First-Principles Study & Strategy Guide" />
+  <meta property="og:description" content="A Structural Framework for Digital SAT Reading, Writing, Grammar, and Math with interactive Desmos labs, adaptive MST routing, and Bluebook pacing tools." />
+  <meta property="og:type" content="website" />
+
+  <!-- Tailwind CSS v4 Browser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- KaTeX for Publication-Grade Math Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false
+    });"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --bg-base: #05070d;
+      --text-primary: #f5f5f7;
+      --text-secondary: rgba(245, 245, 247, 0.74);
+      --text-muted: rgba(245, 245, 247, 0.48);
+      --glass-bg: rgba(255, 255, 255, 0.052);
+      --glass-bg-hover: rgba(255, 255, 255, 0.082);
+      --glass-elevated: rgba(16, 20, 32, 0.76);
+      --glass-border: rgba(255, 255, 255, 0.13);
+      --glass-highlight: rgba(255, 255, 255, 0.22);
+      --glass-shadow: 0 24px 64px rgba(0, 0, 0, 0.52);
+      --pill-bg: rgba(255, 255, 255, 0.068);
+      --code-bg: rgba(0, 0, 0, 0.36);
+      --accent-blue: #38bdf8;
+      --accent-indigo: #818cf8;
+    }
+
+    html.light {
+      --bg-base: #ecf1f9;
+      --text-primary: #0f172a;
+      --text-secondary: rgba(15, 23, 42, 0.78);
+      --text-muted: rgba(15, 23, 42, 0.52);
+      --glass-bg: rgba(255, 255, 255, 0.68);
+      --glass-bg-hover: rgba(255, 255, 255, 0.86);
+      --glass-elevated: rgba(255, 255, 255, 0.86);
+      --glass-border: rgba(255, 255, 255, 0.9);
+      --glass-highlight: rgba(255, 255, 255, 0.98);
+      --glass-shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+      --pill-bg: rgba(15, 23, 42, 0.055);
+      --code-bg: rgba(15, 23, 42, 0.065);
+      --accent-blue: #0284c7;
+      --accent-indigo: #4f46e5;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      transition: background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.45s ease;
+    }
+
+    /* Ambient Mesh Orbs for True Glass Refraction */
+    .ambient-orb {
+      position: fixed;
+      border-radius: 9999px;
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+      animation: floatOrb 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0px, 0px) scale(1); }
+      50% { transform: translate(34px, -28px) scale(1.07); }
+      100% { transform: translate(-24px, 22px) scale(0.95); }
+    }
+
+    /* Apple Squircle Frosted Glass Cards with Specular Cursor Sheen */
+    .apple-glass {
+      position: relative;
+      background: var(--glass-bg);
+      backdrop-filter: blur(30px) saturate(190%);
+      -webkit-backdrop-filter: blur(30px) saturate(190%);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-highlight);
+      border-radius: 30px;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  background 0.35s ease,
+                  border-color 0.35s ease,
+                  box-shadow 0.35s ease;
+    }
+
+    .apple-glass::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: radial-gradient(
+        650px circle at var(--mouse-x, 50%) var(--mouse-y, 0%),
+        rgba(255, 255, 255, 0.065),
+        transparent 45%
+      );
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .apple-glass:hover::before {
+      opacity: 1;
+    }
+
+    .apple-subcard {
+      background: var(--pill-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 22px;
+      transition: all 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .apple-subcard-hover:hover {
+      background: var(--glass-bg-hover);
+      transform: translateY(-1px);
+    }
+
+    .apple-dock {
+      background: var(--glass-elevated);
+      backdrop-filter: blur(34px) saturate(210%);
+      -webkit-backdrop-filter: blur(34px) saturate(210%);
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.32), inset 0 1px 0 var(--glass-highlight);
+    }
+
+    .text-sec { color: var(--text-secondary); }
+    .text-mut { color: var(--text-muted); }
+
+    .mono-chip {
+      background: var(--code-bg);
+      border: 1px solid var(--glass-border);
+      font-family: "SF Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    /* Active Navigation Pill & Segmented Controls */
+    .nav-pill {
+      transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .nav-pill.active-nav {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(129, 140, 248, 0.25));
+      color: var(--text-primary);
+      border: 1px solid rgba(125, 211, 252, 0.38);
+      box-shadow: 0 2px 12px rgba(56, 189, 248, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    .seg-btn {
+      border-radius: 9999px;
+      transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+      color: var(--text-secondary);
+      border: 1px solid transparent;
+    }
+    .seg-btn.active {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.24), rgba(129, 140, 248, 0.28));
+      color: var(--text-primary);
+      border: 1px solid rgba(125, 211, 252, 0.42);
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+
+    /* Custom Range Sliders (Apple iOS Style) */
+    input[type="range"].apple-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      border-radius: 9999px;
+      background: rgba(148, 163, 184, 0.25);
+      outline: none;
+    }
+    input[type="range"].apple-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 9999px;
+      background: #ffffff;
+      border: 2px solid #38bdf8;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    input[type="range"].apple-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.12);
+    }
+
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.28);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(148, 163, 184, 0.45); }
+
+    .katex { font-size: 1.03em; }
+
+    /* Clean Print / PDF Export Styles */
+    @media print {
+      body { background: #ffffff !important; color: #111827 !important; }
+      header, .ambient-orb, .no-print { display: none !important; }
+      main { padding-top: 0 !important; max-width: 100% !important; }
+      .apple-glass, .apple-subcard {
+        background: #ffffff !important;
+        border: 1px solid #d1d5db !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        break-inside: avoid;
+      }
+      .text-sec, .text-mut { color: #374151 !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-sky-400/30 selection:text-sky-200">
+
+  <!-- Ambient Liquid Color Orbs -->
+  <div class="ambient-orb w-[36rem] h-[36rem] bg-indigo-500/25 -top-36 -left-32"></div>
+  <div class="ambient-orb w-[32rem] h-[32rem] bg-sky-400/20 top-[26%] -right-28" style="animation-delay: -5s;"></div>
+  <div class="ambient-orb w-[34rem] h-[34rem] bg-violet-500/20 bottom-[14%] -left-24" style="animation-delay: -10s;"></div>
+  <div class="ambient-orb w-[28rem] h-[28rem] bg-cyan-400/15 -bottom-24 right-[15%]" style="animation-delay: -14s;"></div>
+
+  <!-- Floating macOS Top Navigation Dock -->
+  <header class="fixed top-4 inset-x-0 z-50 px-3 sm:px-4 flex flex-col items-center">
+    <nav class="apple-dock rounded-full px-3 py-2 flex items-center gap-1 sm:gap-2 max-w-6xl w-full justify-between relative overflow-hidden">
+      <!-- Subtle Reading Progress Bar inside Top Dock -->
+      <div id="readProgressBar" class="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-sky-400 via-indigo-400 to-violet-400 transition-all duration-150" style="width: 0%;"></div>
+
+      <a href="#top" class="flex items-center gap-2.5 pl-2 pr-3 py-1 rounded-full hover:bg-white/5 transition shrink-0">
+        <span class="w-7 h-7 rounded-full bg-gradient-to-tr from-sky-400 to-indigo-500 flex items-center justify-center text-white font-bold text-xs shadow-md">
+          SAT
+        </span>
+        <span class="font-semibold text-sm tracking-tight hidden sm:inline">The Digital SAT Playbook</span>
+      </a>
+
+      <!-- Desktop Scroll-Spy Chapter Links -->
+      <div class="hidden lg:flex items-center gap-1 text-xs font-medium">
+        <a href="#sec-01" data-nav="sec-01" class="nav-pill px-3 py-1.5 rounded-full text-sec hover:text-sky-400">01 · Architecture</a>
+        <a href="#sec-02" data-nav="sec-02" class="nav-pill px-3 py-1.5 rounded-full text-sec hover:text-sky-400">02 · Reading &amp; Writing</a>
+        <a href="#sec-03" data-nav="sec-03" class="nav-pill px-3 py-1.5 rounded-full text-sec hover:text-sky-400">03 · Grammar</a>
+        <a href="#sec-04" data-nav="sec-04" class="nav-pill px-3 py-1.5 rounded-full text-sec hover:text-sky-400">04 · Math &amp; Desmos</a>
+        <a href="#sec-05" data-nav="sec-05" class="nav-pill px-3 py-1.5 rounded-full text-sec hover:text-sky-400">05 · Error Log</a>
+      </div>
+
+      <!-- Quick Actions: Search, Print/PDF & Theme Toggle -->
+      <div class="flex items-center gap-1.5">
+        <button onclick="openSearchModal()" title="Search rules & formulas (⌘K)"
+          class="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs text-sec hover:bg-white/10 border border-white/10 transition cursor-pointer">
+          <i data-lucide="search" class="w-3.5 h-3.5 text-sky-400"></i>
+          <span>Search</span>
+          <kbd class="mono-chip text-[10px] px-1.5 py-0.5 rounded-md text-mut hidden sm:inline">⌘K</kbd>
+        </button>
+
+        <button onclick="window.print()" title="Print or Save Clean Offline PDF"
+          class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs text-sec hover:bg-white/10 border border-white/10 transition cursor-pointer">
+          <i data-lucide="printer" class="w-3.5 h-3.5 text-indigo-400"></i>
+          <span>PDF</span>
+        </button>
+
+        <button onclick="toggleTheme()" id="themeBtn" title="Toggle Frosted Light / Dark Mode"
+          class="p-2 rounded-full text-sec hover:bg-white/10 border border-white/10 transition cursor-pointer">
+          <i data-lucide="sun" id="themeIcon" class="w-4 h-4 text-amber-300"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile/Tablet Horizontal Scrollable Pill Strip -->
+    <div class="lg:hidden mt-2 apple-dock rounded-full px-2 py-1 flex items-center gap-1 overflow-x-auto max-w-full text-[11px] font-medium">
+      <a href="#sec-01" data-nav="sec-01" class="nav-pill whitespace-nowrap px-2.5 py-1 rounded-full text-sec">01 · Architecture</a>
+      <a href="#sec-02" data-nav="sec-02" class="nav-pill whitespace-nowrap px-2.5 py-1 rounded-full text-sec">02 · R&amp;W</a>
+      <a href="#sec-03" data-nav="sec-03" class="nav-pill whitespace-nowrap px-2.5 py-1 rounded-full text-sec">03 · Grammar</a>
+      <a href="#sec-04" data-nav="sec-04" class="nav-pill whitespace-nowrap px-2.5 py-1 rounded-full text-sec">04 · Math &amp; Desmos</a>
+      <a href="#sec-05" data-nav="sec-05" class="nav-pill whitespace-nowrap px-2.5 py-1 rounded-full text-sec">05 · Error Log</a>
+    </div>
+  </header>
+
+  <!-- Spotlight Search Modal (⌘K) -->
+  <div id="searchModal" class="fixed inset-0 z-50 hidden items-start justify-center pt-24 px-4 bg-black/60 backdrop-blur-md" onclick="closeSearchModal(event)">
+    <div class="apple-glass max-w-xl w-full p-4 sm:p-5 shadow-2xl" onclick="event.stopPropagation()">
+      <div class="flex items-center gap-3 pb-3 border-b border-white/15">
+        <i data-lucide="search" class="w-5 h-5 text-sky-400"></i>
+        <input id="searchInput" type="text" placeholder="Search rules, traps, Desmos shortcuts, formulas..."
+          class="w-full bg-transparent outline-none text-sm sm:text-base placeholder:text-slate-400"
+          oninput="filterSearch(this.value)" />
+        <button onclick="closeSearchModal()" class="mono-chip text-xs px-2 py-1 rounded-lg text-mut cursor-pointer">ESC</button>
+      </div>
+      <div id="searchResults" class="mt-3 max-h-80 overflow-y-auto space-y-2 text-sm"></div>
+    </div>
+  </div>
+
+  <!-- Main Content Container -->
+  <main id="top" class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 lg:pt-28 pb-24 space-y-16 sm:space-y-24">
+
+    <!-- HERO SECTION -->
+    <section class="reveal visible apple-glass p-7 sm:p-12 lg:p-14 relative overflow-hidden">
+      <div class="absolute -right-16 -top-16 w-80 h-80 rounded-full bg-gradient-to-br from-sky-400/20 to-indigo-500/20 blur-2xl pointer-events-none"></div>
+
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full apple-subcard text-xs font-medium text-sky-400">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          <span>COMPREHENSIVE STUDY &amp; STRATEGY GUIDE</span>
+        </div>
+
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full apple-subcard text-xs text-sec">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>By <strong class="text-sky-400 font-semibold">Prabhakar Sana</strong> · SAT 1540 (790M · 750R&amp;W)</span>
+        </div>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl lg:text-[3.4rem] font-bold tracking-tight leading-[1.09] max-w-4xl mb-4">
+        The Digital SAT Playbook: <span class="bg-gradient-to-r from-sky-300 via-indigo-300 to-violet-300 bg-clip-text text-transparent">A First-Principles Guide</span> to Mastering the Adaptive Exam
+      </h1>
+
+      <p class="text-base sm:text-xl text-sec max-w-2xl leading-relaxed mb-8">
+        A Structural Framework for Reading, Writing, Grammar, and Math — replacing rote formula memorization with structural intuition, adaptive pacing, and Desmos execution.
+      </p>
+
+      <!-- Hero Quick Stats Bento Strip -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8">
+        <div class="apple-subcard apple-subcard-hover p-4">
+          <div class="text-xs text-mut uppercase tracking-wider mb-1">Total Runtime</div>
+          <div class="text-xl sm:text-2xl font-bold">2h 14m</div>
+          <div class="text-xs text-sec mt-0.5">+ 10-min break</div>
+        </div>
+        <div class="apple-subcard apple-subcard-hover p-4">
+          <div class="text-xs text-mut uppercase tracking-wider mb-1">Score Scale</div>
+          <div class="text-xl sm:text-2xl font-bold">400–1600</div>
+          <div class="text-xs text-sec mt-0.5">200–800 per section</div>
+        </div>
+        <div class="apple-subcard apple-subcard-hover p-4">
+          <div class="text-xs text-mut uppercase tracking-wider mb-1">Total Questions</div>
+          <div class="text-xl sm:text-2xl font-bold">98 Items</div>
+          <div class="text-xs text-sec mt-0.5">54 R&amp;W · 44 Math</div>
+        </div>
+        <div class="apple-subcard apple-subcard-hover p-4">
+          <div class="text-xs text-mut uppercase tracking-wider mb-1">Guessing Penalty</div>
+          <div class="text-xl sm:text-2xl font-bold text-emerald-400">Zero</div>
+          <div class="text-xs text-sec mt-0.5">Never leave blanks</div>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="flex flex-wrap gap-2.5 no-print">
+        <a href="#sec-01" class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-gradient-to-r from-sky-400 to-indigo-500 text-slate-950 shadow-lg shadow-sky-500/20 hover:opacity-95 transition">
+          Start Reading Playbook →
+        </a>
+        <a href="#sec-04" class="px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium apple-subcard hover:bg-white/10 transition">
+          Desmos Lab &amp; Math Formulas
+        </a>
+        <a href="#sec-05" class="px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium apple-subcard hover:bg-white/10 transition">
+          Error Log &amp; Pacing Timer
+        </a>
+        <button onclick="window.print()" class="px-4 py-2.5 rounded-full text-xs sm:text-sm font-medium apple-subcard hover:bg-white/10 transition cursor-pointer inline-flex items-center gap-1.5">
+          <i data-lucide="download" class="w-3.5 h-3.5 text-sky-400"></i>
+          Save Clean PDF
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 01: EXAM ARCHITECTURE & THE ADAPTIVE ENGINE
+    ========================================================= -->
+    <section id="sec-01" class="reveal space-y-6 scroll-mt-28">
+      <div class="flex items-center gap-3">
+        <span class="px-3 py-1 rounded-full mono-chip text-xs font-semibold text-sky-400">01</span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Exam Architecture &amp; The Adaptive Engine</h2>
+      </div>
+
+      <div class="apple-glass p-6 sm:p-8 space-y-7">
+        <p class="text-sec text-sm sm:text-base leading-relaxed">
+          The Digital SAT runs exclusively through the College Board's <strong>Bluebook</strong> application. It lasts <strong>2 hours and 14 minutes</strong> (plus a 10-minute break between sections) and is scored on a <strong>400–1600 scale</strong> (200–800 per section). There is <strong>no penalty for guessing</strong>—never leave a question blank.
+        </p>
+
+        <!-- Structure Table -->
+        <div class="overflow-x-auto apple-subcard p-1">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-white/10 text-xs uppercase tracking-wider text-mut">
+                <th class="py-3.5 px-4">Section</th>
+                <th class="py-3.5 px-4">Modules</th>
+                <th class="py-3.5 px-4">Questions</th>
+                <th class="py-3.5 px-4">Time</th>
+                <th class="py-3.5 px-4">Pace per Question</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/10">
+              <tr class="hover:bg-white/5 transition">
+                <td class="py-4 px-4 font-semibold text-sky-400">Reading &amp; Writing</td>
+                <td class="py-4 px-4 text-sec">2 Adaptive Modules</td>
+                <td class="py-4 px-4 text-sec">54 total (27 per module)</td>
+                <td class="py-4 px-4 text-sec">64 mins (32 mins/module)</td>
+                <td class="py-4 px-4 font-medium">~71 seconds</td>
+              </tr>
+              <tr class="hover:bg-white/5 transition">
+                <td class="py-4 px-4 font-semibold text-indigo-400">Math</td>
+                <td class="py-4 px-4 text-sec">2 Adaptive Modules</td>
+                <td class="py-4 px-4 text-sec">44 total (22 per module)</td>
+                <td class="py-4 px-4 text-sec">70 mins (35 mins/module)</td>
+                <td class="py-4 px-4 font-medium">~95 seconds</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- How MST Works + Interactive Adaptive Routing Simulator -->
+        <div class="pt-1 space-y-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h3 class="text-lg sm:text-xl font-semibold">How Multistage Adaptive Testing (MST) Works</h3>
+              <p class="text-xs text-mut">Adjust the interactive simulator below to see how Module 1 accuracy controls your Module 2 score ceiling</p>
+            </div>
+          </div>
+
+          <!-- Interactive MST Simulator -->
+          <div id="mstVisualizer" class="apple-subcard p-5 sm:p-6 border border-sky-400/30 bg-sky-400/5 space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+              <div class="md:col-span-7 space-y-4">
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1.5">
+                    <span class="text-sec">Module 1 Accuracy (Routing Stage)</span>
+                    <span id="m1PctLabel" class="font-bold text-sky-400">85%</span>
+                  </div>
+                  <input id="m1Slider" type="range" min="20" max="100" value="85" class="apple-slider w-full" oninput="updateMstSim()" />
+                </div>
+                <div>
+                  <div class="flex justify-between text-xs font-medium mb-1.5">
+                    <span class="text-sec">Module 2 Accuracy (Scoring Stage)</span>
+                    <span id="m2PctLabel" class="font-bold text-indigo-400">85%</span>
+                  </div>
+                  <input id="m2Slider" type="range" min="20" max="100" value="85" class="apple-slider w-full" oninput="updateMstSim()" />
+                </div>
+              </div>
+
+              <div class="md:col-span-5 mono-chip rounded-2xl p-4 flex items-center justify-between gap-3">
+                <div>
+                  <div id="mstRouteBadge" class="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Upper Module 2 Routed</div>
+                  <div id="mstEstScore" class="text-3xl font-bold mt-0.5">~740</div>
+                  <div id="mstCeilingNote" class="text-[11px] text-mut mt-0.5">Section ceiling unlocked: up to 800</div>
+                </div>
+                <i id="mstRouteIcon" data-lucide="arrow-up-right" class="w-8 h-8 text-emerald-400 shrink-0"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4 MST Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="apple-subcard apple-subcard-hover p-5 space-y-1.5">
+              <div class="flex items-center gap-2 font-semibold text-sm sm:text-base">
+                <i data-lucide="git-branch" class="w-4 h-4 text-sky-400"></i>
+                Module 1 Routing Mechanism
+              </div>
+              <p class="text-sm text-sec leading-relaxed">
+                Every student receives a mixed-difficulty Module 1 (easy, medium, and hard questions). Your performance in Module 1 determines which Module 2 you receive.
+              </p>
+            </div>
+
+            <div class="apple-subcard apple-subcard-hover p-5 space-y-1.5">
+              <div class="flex items-center gap-2 font-semibold text-sm sm:text-base">
+                <i data-lucide="trending-up" class="w-4 h-4 text-indigo-400"></i>
+                Module 2 Score Ceiling
+              </div>
+              <p class="text-sm text-sec leading-relaxed">
+                Strong performance routes you into the harder Module 2, unlocking scores up to <strong>800</strong>. Weak performance routes you into the easier Module 2, which caps your section score around <strong>560–650</strong> even if you answer every question in Module 2 correctly.
+              </p>
+            </div>
+
+            <div class="apple-subcard apple-subcard-hover p-5 space-y-1.5">
+              <div class="flex items-center gap-2 font-semibold text-sm sm:text-base">
+                <i data-lucide="scale" class="w-4 h-4 text-amber-400"></i>
+                Item Response Theory (IRT) Weighting
+              </div>
+              <p class="text-sm text-sec leading-relaxed">
+                Not every question carries equal point value. Missing an easy or medium question in Module 1 hurts your score significantly more than missing an experimental hard question at the end of Module 2. Protect accuracy on foundational questions first.
+              </p>
+            </div>
+
+            <div class="apple-subcard apple-subcard-hover p-5 space-y-1.5">
+              <div class="flex items-center gap-2 font-semibold text-sm sm:text-base">
+                <i data-lucide="flask-conical" class="w-4 h-4 text-violet-400"></i>
+                Experimental Questions
+              </div>
+              <p class="text-sm text-sec leading-relaxed">
+                Each module contains <strong>2 unscored pretest questions</strong> mixed seamlessly with graded items. Because pretest items are indistinguishable from scored items, solve each problem methodically without stalling on an unfamiliar outlier.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 02: READING & WRITING: STRUCTURAL PLAYBOOK
+    ========================================================= -->
+    <section id="sec-02" class="reveal space-y-6 scroll-mt-28">
+      <div class="flex items-center gap-3">
+        <span class="px-3 py-1 rounded-full mono-chip text-xs font-semibold text-sky-400">02</span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Reading &amp; Writing: Structural Playbook</h2>
+      </div>
+
+      <div class="apple-glass p-6 sm:p-8 space-y-8">
+        <p class="text-sec text-sm sm:text-base leading-relaxed">
+          Every Reading and Writing question features a single short passage (<strong>25 to 150 words</strong>) paired with one multiple-choice question. Crucially, questions inside every module appear in a <strong>fixed domain sequence</strong>:
+        </p>
+
+        <!-- Fixed Domain Sequence Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="apple-subcard apple-subcard-hover p-5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs font-semibold text-sky-400 mb-2">
+                <span>1. CRAFT &amp; STRUCTURE</span>
+                <span class="mono-chip px-2 py-0.5 rounded-full">~28% · Q1–Q7</span>
+              </div>
+              <p class="text-sm text-sec leading-relaxed">Words in Context, Text Structure and Purpose, Cross-Text Connections.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/10 text-[11px] text-mut">Pass 2 · Dense Reading</div>
+          </div>
+
+          <div class="apple-subcard apple-subcard-hover p-5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs font-semibold text-indigo-400 mb-2">
+                <span>2. INFORMATION &amp; IDEAS</span>
+                <span class="mono-chip px-2 py-0.5 rounded-full">~26% · Q8–Q14</span>
+              </div>
+              <p class="text-sm text-sec leading-relaxed">Central Ideas and Details, Command of Evidence (Textual &amp; Quantitative), Inferences.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/10 text-[11px] text-mut">Pass 2 · Dense Reading</div>
+          </div>
+
+          <div class="apple-subcard apple-subcard-hover p-5 flex flex-col justify-between border border-emerald-400/30">
+            <div>
+              <div class="flex items-center justify-between text-xs font-semibold text-emerald-400 mb-2">
+                <span>3. ENGLISH CONVENTIONS</span>
+                <span class="mono-chip px-2 py-0.5 rounded-full">~26% · Q15–Q21</span>
+              </div>
+              <p class="text-sm text-sec leading-relaxed">Punctuation boundaries and grammar mechanics.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/10 text-[11px] text-emerald-400 font-medium">Start Here · Objective Rules</div>
+          </div>
+
+          <div class="apple-subcard apple-subcard-hover p-5 flex flex-col justify-between border border-emerald-400/30">
+            <div>
+              <div class="flex items-center justify-between text-xs font-semibold text-emerald-400 mb-2">
+                <span>4. EXPRESSION OF IDEAS</span>
+                <span class="mono-chip px-2 py-0.5 rounded-full">~20% · Q22–Q27</span>
+              </div>
+              <p class="text-sm text-sec leading-relaxed">Rhetorical Synthesis (bulleted student notes) and Transitions.</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-white/10 text-[11px] text-emerald-400 font-medium">Start Here · Rapid Execution</div>
+          </div>
+        </div>
+
+        <!-- High-Leverage Pacing Order Callout -->
+        <div class="apple-subcard p-5 sm:p-6 border border-sky-400/30 bg-gradient-to-r from-sky-500/10 via-indigo-500/10 to-transparent">
+          <div class="flex items-center gap-2 text-sky-400 font-semibold text-base mb-2">
+            <i data-lucide="zap" class="w-4 h-4"></i>
+            High-Leverage Pacing Order
+          </div>
+          <p class="text-sm text-sec leading-relaxed mb-4">
+            Instead of moving linearly from Q1 to Q27, <strong>jump directly to Q15 (Standard English Conventions) first</strong>. Questions 15–27 rely on objective rules and bulleted notes rather than dense reading comprehension. Completing them in <strong>8–10 minutes</strong> leaves <strong>22–24 minutes</strong> to work carefully through Q1–Q14 without time pressure.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="mono-chip rounded-xl px-3.5 py-2.5 flex items-center justify-between">
+              <span class="font-semibold text-emerald-400">Step 1 · Q15 → Q27</span>
+              <span class="text-sec">8–10 mins (Finish by 22:00 left)</span>
+            </div>
+            <div class="mono-chip rounded-xl px-3.5 py-2.5 flex items-center justify-between">
+              <span class="font-semibold text-sky-400">Step 2 · Q1 → Q14</span>
+              <span class="text-sec">18–20 mins (Finish by 4:00 left)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Golden Rule of SAT Reading + Interactive 4-Trap Eliminator -->
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-lg sm:text-xl font-semibold mb-1">The Golden Rule of SAT Reading</h3>
+            <p class="text-sm text-sec">
+              A correct answer is <strong>100% demonstrably supported by the literal text</strong>—never by outside knowledge or plausible assumptions. Wrong choices fail for four predictable reasons:
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="apple-subcard apple-subcard-hover p-5">
+              <div class="text-xs font-bold uppercase tracking-wider text-rose-400 mb-1">Trap 01 · Too Extreme</div>
+              <p class="text-sm text-sec leading-relaxed">
+                Uses absolute words (<em>always, never, solely, completely, proves</em>) when the passage makes a measured claim (<em>suggests, often, primarily</em>).
+              </p>
+            </div>
+
+            <div class="apple-subcard apple-subcard-hover p-5">
+              <div class="text-xs font-bold uppercase tracking-wider text-rose-400 mb-1">Trap 02 · Out of Scope</div>
+              <p class="text-sm text-sec leading-relaxed">
+                Introduces a concept, comparison, or timeframe never mentioned in the passage.
+              </p>
+            </div>
+
+            <div class="apple-subcard apple-subcard-hover p-5">
+              <div class="text-xs font-bold uppercase tracking-wider text-rose-400 mb-1">Trap 03 · Reversed Relationship</div>
+              <p class="text-sm text-sec leading-relaxed">
+                Flips cause and effect or attributes Scholar A's view to Scholar B.
+              </p>
+            </div>
+
+            <div class="apple-subcard apple-subcard-hover p-5">
+              <div class="text-xs font-bold uppercase tracking-wider text-rose-400 mb-1">Trap 04 · Half-Right, Half-Wrong</div>
+              <p class="text-sm text-sec leading-relaxed">
+                Starts with an accurate statement from the passage and attaches an unsupported detail at the end.
+              </p>
+            </div>
+          </div>
+
+          <!-- Interactive Trap-Spotter Practice Widget -->
+          <div class="apple-subcard p-5 border border-indigo-400/25 space-y-3 no-print">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-1.5">
+                <i data-lucide="crosshair" class="w-3.5 h-3.5"></i>
+                Interactive Trap-Spotter Drill (Bluebook Option Eliminator)
+              </span>
+              <span class="text-[11px] text-mut">Click <code class="mono-chip px-1 rounded">ABC</code> to cross out traps, or click a choice to check</span>
+            </div>
+            <p class="text-xs sm:text-sm text-sec italic bg-white/5 p-3.5 rounded-xl border border-white/10">
+              "While Dr. Lin’s 2023 study suggests that urban rooftop gardens often reduce localized summer air temperatures by 1–2°C, she cautions that their cooling impact depends heavily on irrigation frequency."
+            </p>
+            <div id="trapDrillOptions" class="space-y-2 text-xs sm:text-sm"></div>
+            <div id="trapDrillFeedback" class="text-xs text-sec hidden pt-1"></div>
+          </div>
+        </div>
+
+        <!-- Domain-Specific Execution Tactics -->
+        <div class="space-y-4">
+          <h3 class="text-lg sm:text-xl font-semibold">Domain-Specific Execution Tactics</h3>
+          <div class="space-y-3">
+            <div class="apple-subcard apple-subcard-hover p-5">
+              <div class="font-semibold text-sky-400 text-sm mb-1">Words in Context</div>
+              <p class="text-sm text-sec leading-relaxed">
+                Read the passage and cover the answer choices. Predict your own word based on structural clues—contrast (<em>however, despite</em>), continuation (<em>moreover, similarly</em>), or definition after a colon/dash—then match your prediction to the choices. Eliminate words that have the right dictionary definition in isolation but create the wrong tone or collocation in context.
+              </p>
+            </div>
+
+            <div class="apple-subcard apple-subcard-hover p-5">
+              <div class="font-semibold text-indigo-400 text-sm mb-1">Command of Evidence (Quantitative)</div>
+              <p class="text-sm text-sec leading-relaxed">
+                Read the text and the prompt's claim before inspecting the table or graph. Many wrong answers accurately describe a number on the chart while failing to support the specific claim in the question. Always verify axis units (e.g., millions vs. percentages, change vs. total).
+              </p>
+            </div>
+
+            <div class="apple-subcard apple-subcard-hover p-5">
+              <div class="font-semibold text-violet-400 text-sm mb-1">Inferences</div>
+              <p class="text-sm text-sec leading-relaxed">
+                Treat inference questions as strict logical deductions: <em>"If statements A and B in the passage are true, what must also be true?"</em> Connect the premises directly without extrapolating beyond the final sentence.
+              </p>
+            </div>
+
+            <div class="apple-subcard apple-subcard-hover p-5">
+              <div class="font-semibold text-emerald-400 text-sm mb-1">Transitions</div>
+              <p class="text-sm text-sec leading-relaxed">
+                Read the sentence before the blank and the sentence after the blank, ignoring the transition word. Identify the exact logical relationship—<strong>Addition</strong> (<em>furthermore, indeed</em>), <strong>Contrast</strong> (<em>nevertheless, conversely</em>), <strong>Cause/Effect</strong> (<em>consequently, thus</em>), or <strong>Example/Specification</strong> (<em>specifically, for instance</em>)—before checking options.
+              </p>
+            </div>
+
+            <div class="apple-subcard apple-subcard-hover p-5">
+              <div class="font-semibold text-amber-400 text-sm mb-1">Rhetorical Synthesis (Student Notes)</div>
+              <p class="text-sm text-sec leading-relaxed">
+                Read the question prompt first (e.g., <em>"The student wants to emphasize a difference between X and Y"</em>). Immediately eliminate any choice that fails that specific goal. In roughly <strong>70% of questions</strong>, only one option satisfies the prompt's exact instruction—meaning you only need to check the bullet points to verify factual accuracy.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 03: STANDARD ENGLISH CONVENTIONS
+    ========================================================= -->
+    <section id="sec-03" class="reveal space-y-6 scroll-mt-28">
+      <div class="flex items-center gap-3">
+        <span class="px-3 py-1 rounded-full mono-chip text-xs font-semibold text-sky-400">03</span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Standard English Conventions</h2>
+      </div>
+
+      <div class="apple-glass p-6 sm:p-8 space-y-6">
+        <p class="text-sec text-sm sm:text-base leading-relaxed">
+          Standard English Conventions test <strong>formal written rules</strong> rather than conversational intuition. Master these four core mechanics to score near 100% on grammar questions.
+        </p>
+
+        <!-- Segmented Pill Selector for Grammar Rules -->
+        <div class="flex flex-wrap gap-2 p-1.5 rounded-2xl sm:rounded-full apple-subcard w-fit">
+          <button onclick="selectGrammarTab(0)" id="gTab0" class="seg-btn active px-4 py-1.5 text-xs sm:text-sm font-medium cursor-pointer">1. Clause Boundaries</button>
+          <button onclick="selectGrammarTab(1)" id="gTab1" class="seg-btn px-4 py-1.5 text-xs sm:text-sm font-medium cursor-pointer">2. Non-Essential Elements</button>
+          <button onclick="selectGrammarTab(2)" id="gTab2" class="seg-btn px-4 py-1.5 text-xs sm:text-sm font-medium cursor-pointer">3. Subject-Verb Agreement</button>
+          <button onclick="selectGrammarTab(3)" id="gTab3" class="seg-btn px-4 py-1.5 text-xs sm:text-sm font-medium cursor-pointer">4. Modifiers &amp; Verb Form</button>
+        </div>
+
+        <!-- Tab 1: Clause Boundaries & Punctuation -->
+        <div id="gPanel0" class="space-y-4">
+          <p class="text-sm text-sec leading-relaxed">
+            An <strong>Independent Clause (IC)</strong> has a subject, a main verb, and expresses a complete thought (it can stand alone as a sentence). A <strong>Dependent Clause (DC)</strong> or phrase cannot stand alone. There are <strong>only four correct ways</strong> to join two Independent Clauses:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <div class="apple-subcard p-4">
+              <div class="text-xs font-bold text-sky-400 mb-1">1. Period</div>
+              <div class="mono-chip inline-block px-2.5 py-1 rounded-lg text-xs font-semibold mb-1.5">IC. IC.</div>
+              <p class="text-xs text-sec">Separates two complete sentences cleanly.</p>
+            </div>
+
+            <div class="apple-subcard p-4">
+              <div class="text-xs font-bold text-sky-400 mb-1">2. Semicolon</div>
+              <div class="mono-chip inline-block px-2.5 py-1 rounded-lg text-xs font-semibold mb-1.5">IC; IC.</div>
+              <p class="text-xs text-sec">Note: Conjunctive adverbs like <em>however</em>, <em>therefore</em>, and <em>moreover</em> are not FANBOYS—they require a semicolon before and a comma after: <code class="mono-chip px-1.5 py-0.5 rounded">IC; however, IC.</code></p>
+            </div>
+
+            <div class="apple-subcard p-4">
+              <div class="text-xs font-bold text-sky-400 mb-1">3. Comma + FANBOYS</div>
+              <div class="mono-chip inline-block px-2.5 py-1 rounded-lg text-xs font-semibold mb-1.5">IC, [for / and / nor / but / or / yet / so] IC.</div>
+              <p class="text-xs text-sec">Requires both the comma and a coordinating conjunction.</p>
+            </div>
+
+            <div class="apple-subcard p-4">
+              <div class="text-xs font-bold text-sky-400 mb-1">4. Colon or Single Em-Dash</div>
+              <div class="mono-chip inline-block px-2.5 py-1 rounded-lg text-xs font-semibold mb-1.5">IC: IC. &nbsp;or&nbsp; IC — IC.</div>
+              <p class="text-xs text-sec">Only when the second clause directly explains, defines, or illustrates the first.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+            <div class="apple-subcard p-4 border border-amber-400/30">
+              <div class="text-xs font-bold uppercase tracking-wider text-amber-400 mb-1">The Equivalence Elimination Rule</div>
+              <p class="text-sm text-sec leading-relaxed">
+                Because a period (<code class="mono-chip px-1.5 rounded">.</code>) and a semicolon (<code class="mono-chip px-1.5 rounded">;</code>) are grammatically identical when joining two independent clauses, if two answer choices differ only by a period versus a semicolon (with identical wording), <strong>both choices are automatically wrong</strong>.
+              </p>
+            </div>
+
+            <div class="apple-subcard p-4 border border-rose-400/30">
+              <div class="text-xs font-bold uppercase tracking-wider text-rose-400 mb-1">Comma Splice Trap</div>
+              <p class="text-sm text-sec leading-relaxed">
+                Never join two independent clauses with just a comma (<code class="mono-chip px-1.5 rounded">IC, IC</code> is always wrong) or a FANBOYS word without a comma (<code class="mono-chip px-1.5 rounded">IC and IC</code> is wrong when both sides are full clauses).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Non-Essential Elements -->
+        <div id="gPanel1" class="hidden space-y-4">
+          <p class="text-sm text-sec leading-relaxed">
+            Extra information that can be removed without breaking the core sentence must be enclosed by <strong>matching punctuation</strong>:
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            <div class="apple-subcard p-4">
+              <div class="text-xs font-bold text-sky-400 mb-1.5">Paired Commas</div>
+              <p class="text-sm italic text-sec">The Hubble Telescope<span class="text-sky-400 font-bold">,</span> launched in 1990<span class="text-sky-400 font-bold">,</span> orbits Earth.</p>
+            </div>
+            <div class="apple-subcard p-4">
+              <div class="text-xs font-bold text-indigo-400 mb-1.5">Paired Em-Dashes</div>
+              <p class="text-sm italic text-sec">The Hubble Telescope <span class="text-indigo-400 font-bold">—</span> launched in 1990 <span class="text-indigo-400 font-bold">—</span> orbits Earth.</p>
+            </div>
+            <div class="apple-subcard p-4">
+              <div class="text-xs font-bold text-violet-400 mb-1.5">Parentheses</div>
+              <p class="text-sm italic text-sec">The Hubble Telescope <span class="text-violet-400 font-bold">(</span>launched in 1990<span class="text-violet-400 font-bold">)</span> orbits Earth.</p>
+            </div>
+          </div>
+          <div class="apple-subcard p-4 border border-amber-400/30 text-sm text-sec leading-relaxed">
+            <strong>Rule Check:</strong> Never mix a comma and a dash around the same phrase. Conversely, if a name or title is <strong>essential</strong> to identify the noun (no commas around it), do not insert commas: <em>Physicist Chien-Shiung Wu conducted the experiment.</em>
+          </div>
+        </div>
+
+        <!-- Tab 3: Subject-Verb Agreement -->
+        <div id="gPanel2" class="hidden space-y-3.5">
+          <div class="apple-subcard p-4">
+            <div class="font-semibold text-sky-400 text-sm mb-1">Strip the Distractors</div>
+            <p class="text-sm text-sec leading-relaxed">
+              Cross out prepositional phrases (<em>of the..., in the..., along with...</em>) separating the subject from its verb.<br/>
+              <span class="text-xs text-mut">Trap:</span> <em>The <u>collection</u> of rare manuscripts [are / <strong class="text-emerald-400">is</strong>] stored underground.</em> Subject is <em>collection</em> (singular) → <strong>is</strong>.
+            </p>
+          </div>
+          <div class="apple-subcard p-4">
+            <div class="font-semibold text-indigo-400 text-sm mb-1">Inverted Sentences</div>
+            <p class="text-sm text-sec leading-relaxed">
+              When a sentence begins with a prepositional phrase or <em>There/Here</em>, find the true subject after the verb:<br/>
+              <em>Beyond the ridge <strong class="text-emerald-400">lie</strong> two glacial <u>valleys</u>.</em> (<em>valleys</em> = plural → <strong>lie</strong>).
+            </p>
+          </div>
+          <div class="apple-subcard p-4">
+            <div class="font-semibold text-violet-400 text-sm mb-1">Collective &amp; Indefinite Pronouns</div>
+            <p class="text-sm text-sec leading-relaxed">
+              <em>Each, every, anyone, everyone, neither, either,</em> and <em>the number of</em> take <strong>singular verbs</strong>. <em>A number of</em> takes a <strong>plural verb</strong>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tab 4: Modifiers, Pronouns & Verb Form -->
+        <div id="gPanel3" class="hidden space-y-3.5">
+          <div class="apple-subcard p-4 space-y-2">
+            <div class="font-semibold text-sky-400 text-sm">Dangling Modifiers</div>
+            <p class="text-sm text-sec leading-relaxed">
+              When a sentence opens with an introductory descriptive phrase, the very first noun after the comma must be the person or thing performing that action.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-1">
+              <div class="p-3 rounded-xl bg-rose-500/10 border border-rose-400/25">
+                <span class="font-bold text-rose-400">Wrong:</span> <em>Analyzing the ice cores, a sudden temperature spike was discovered by the team.</em> (The spike did not analyze the cores.)
+              </div>
+              <div class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-400/25">
+                <span class="font-bold text-emerald-400">Right:</span> <em>Analyzing the ice cores, the team discovered a sudden temperature spike.</em>
+              </div>
+            </div>
+          </div>
+
+          <div class="apple-subcard p-4">
+            <div class="font-semibold text-indigo-400 text-sm mb-1">Verb Tense &amp; Consistency</div>
+            <p class="text-sm text-sec leading-relaxed">
+              Match tense to explicit time markers (<em>in 1924</em> → past; <em>since 2010</em> → present perfect <em>has/have + participle</em>) or the tense of surrounding verbs in the passage.
+            </p>
+          </div>
+
+          <div class="apple-subcard p-4">
+            <div class="font-semibold text-violet-400 text-sm mb-1">Finite Verb vs. Participle</div>
+            <p class="text-sm text-sec leading-relaxed">
+              Every complete sentence needs at least one main conjugated verb. If a clause already has a main verb, a second action generally takes a participle (<em>-ing</em> or <em>-ed</em>) or infinitive (<em>to + verb</em>) unless joined by a conjunction.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 04: MATH: FIRST-PRINCIPLES & DESMOS MASTERY
+    ========================================================= -->
+    <section id="sec-04" class="reveal space-y-6 scroll-mt-28">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <span class="px-3 py-1 rounded-full mono-chip text-xs font-semibold text-indigo-400">04</span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Math: First-Principles &amp; Desmos Mastery</h2>
+        </div>
+
+        <button onclick="toggleDesmos()" id="desmosToggleBtn"
+          class="no-print inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold bg-gradient-to-r from-emerald-400 to-cyan-400 text-slate-950 shadow-lg shadow-emerald-500/20 hover:opacity-95 transition cursor-pointer w-fit">
+          <i data-lucide="calculator" class="w-4 h-4"></i>
+          <span id="desmosBtnLabel">Launch Interactive Desmos Lab</span>
+        </button>
+      </div>
+
+      <!-- Optional Live Desmos Graphing Drawer with Copyable Presets -->
+      <div id="desmosLab" class="hidden apple-glass p-4 sm:p-6 space-y-3.5 border border-emerald-400/35 no-print">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="flex items-center gap-2 text-sm font-semibold text-emerald-400">
+            <i data-lucide="activity" class="w-4 h-4"></i>
+            Live Desmos Graphing Sandbox (Bluebook Standard)
+          </div>
+          <button onclick="toggleDesmos()" class="text-xs px-3 py-1 rounded-full apple-subcard hover:bg-white/10 cursor-pointer">Close Calculator</button>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2 text-xs">
+          <span class="text-mut">Quick Paste Presets:</span>
+          <button onclick="copySnippet('y1 ~ a*x1^2 + b*x1 + c', this)" class="mono-chip px-2.5 py-1 rounded-full hover:bg-white/10 cursor-pointer">Quadratic Regression (~)</button>
+          <button onclick="copySnippet('y1 ~ m*x1 + b', this)" class="mono-chip px-2.5 py-1 rounded-full hover:bg-white/10 cursor-pointer">Linear Regression (~)</button>
+          <button onclick="copySnippet('mean(12, 15, 18, 22)', this)" class="mono-chip px-2.5 py-1 rounded-full hover:bg-white/10 cursor-pointer">mean(...)</button>
+          <button onclick="copySnippet('(x - 2)^2 + (y + 3)^2 = 25', this)" class="mono-chip px-2.5 py-1 rounded-full hover:bg-white/10 cursor-pointer">Circle Equation</button>
+        </div>
+
+        <div class="rounded-2xl overflow-hidden border border-white/15 bg-white">
+          <iframe id="desmosFrame" data-src="https://www.desmos.com/calculator" class="w-full h-[480px]" title="Desmos Graphing Calculator"></iframe>
+        </div>
+      </div>
+
+      <div class="apple-glass p-6 sm:p-8 space-y-8">
+        <p class="text-sec text-sm sm:text-base leading-relaxed">
+          The Math section provides a built-in <strong>Desmos graphing calculator</strong> on every single question. Roughly <strong>75%</strong> of questions are multiple-choice, and <strong>25%</strong> are Student-Produced Responses (SPR) where you type in the exact numerical answer.
+        </p>
+
+        <!-- Math Domains Table -->
+        <div class="overflow-x-auto apple-subcard p-1">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-white/10 text-xs uppercase tracking-wider text-mut">
+                <th class="py-3.5 px-4">Math Domain</th>
+                <th class="py-3.5 px-4">Weight</th>
+                <th class="py-3.5 px-4">Core Topics Tested</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/10">
+              <tr class="hover:bg-white/5 transition">
+                <td class="py-3.5 px-4 font-semibold text-sky-400">Algebra</td>
+                <td class="py-3.5 px-4 font-medium whitespace-nowrap">~35% (13–15 Qs)</td>
+                <td class="py-3.5 px-4 text-sec">Linear equations, systems of two variables, linear functions, linear inequalities</td>
+              </tr>
+              <tr class="hover:bg-white/5 transition">
+                <td class="py-3.5 px-4 font-semibold text-indigo-400">Advanced Math</td>
+                <td class="py-3.5 px-4 font-medium whitespace-nowrap">~35% (13–15 Qs)</td>
+                <td class="py-3.5 px-4 text-sec">Quadratics, polynomials, exponential functions, radicals, rational equations, nonlinear systems</td>
+              </tr>
+              <tr class="hover:bg-white/5 transition">
+                <td class="py-3.5 px-4 font-semibold text-emerald-400">Problem-Solving &amp; Data Analysis</td>
+                <td class="py-3.5 px-4 font-medium whitespace-nowrap">~15% (5–7 Qs)</td>
+                <td class="py-3.5 px-4 text-sec">Ratios, rates, percentages, probability, mean/median/standard deviation, margin of error &amp; study design</td>
+              </tr>
+              <tr class="hover:bg-white/5 transition">
+                <td class="py-3.5 px-4 font-semibold text-violet-400">Geometry &amp; Trigonometry</td>
+                <td class="py-3.5 px-4 font-medium whitespace-nowrap">~15% (5–7 Qs)</td>
+                <td class="py-3.5 px-4 text-sec">Area &amp; volume, triangles &amp; parallel lines, right-triangle trig, unit circle &amp; circle equations</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 5 High-Yield Desmos Workflows -->
+        <div class="space-y-4">
+          <h3 class="text-lg sm:text-xl font-semibold">High-Yield Desmos Workflows</h3>
+
+          <div class="grid grid-cols-1 gap-3.5">
+            <div class="apple-subcard apple-subcard-hover p-5">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                <span class="font-semibold text-sky-400 text-sm">1. Instant System &amp; Equation Solving</span>
+                <button onclick="copySnippet('y = LHS', this)" class="no-print mono-chip text-[11px] px-2.5 py-1 rounded-full hover:bg-white/10 cursor-pointer">Copy: y = LHS</button>
+              </div>
+              <p class="text-sm text-sec leading-relaxed">
+                Graph the left side as $y = \text{LHS}$ and the right side as $y = \text{RHS}$, then click their intersection point. The $x$-coordinate is your solution.
+              </p>
+            </div>
+
+            <div class="apple-subcard apple-subcard-hover p-5">
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                <span class="font-semibold text-indigo-400 text-sm">2. Solving for Unknown Constants via Regression (<code class="mono-chip px-1 rounded">~</code>)</span>
+                <button onclick="copySnippet('y1 ~ a*x1^2 + b*x1 + c', this)" class="no-print mono-chip text-[11px] px-2.5 py-1 rounded-full hover:bg-white/10 cursor-pointer">Copy: y1 ~ a*x1^2 + b*x1 + c</button>
+              </div>
+              <p class="text-sm text-sec leading-relaxed">
+                Whenever a question gives an equation with unknown constants ($a, b, c$) and either gives points on the curve or states that two expressions are equivalent for all $x$: create a table (<code class="mono-chip px-1.5 py-0.5 rounded text-xs">+ → Table</code>) with 3–4 sample values for $x_1$ (e.g., <code class="mono-chip px-1 rounded text-xs">1, 2, 3, 4</code>) and evaluate the known expression in the $y_1$ column. On the next line, type the target form using <code class="mono-chip px-1 rounded text-xs">~</code> instead of <code class="mono-chip px-1 rounded text-xs">=</code> (e.g., <code class="mono-chip px-1.5 py-0.5 rounded text-xs">y1 ~ a*x1^2 + b*x1 + c</code>, using <code class="mono-chip px-1 rounded text-xs">^2</code> for exponents). Desmos immediately outputs the exact values of $a, b,$ and $c$.
+              </p>
+            </div>
+
+            <div class="apple-subcard apple-subcard-hover p-5">
+              <div class="font-semibold text-violet-400 text-sm mb-1.5">3. Parameter Sliders for "No Solution" / "Infinite Solutions"</div>
+              <p class="text-sm text-sec leading-relaxed">
+                Enter a system containing an unknown constant $k$, click <strong>"Add Slider"</strong>, and drag $k$ until the two lines become parallel (no solution) or overlap completely (infinitely many solutions).
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+              <div class="apple-subcard apple-subcard-hover p-5">
+                <div class="flex items-center justify-between gap-2 mb-1.5">
+                  <span class="font-semibold text-emerald-400 text-sm">4. Built-in Statistics Commands</span>
+                  <button onclick="copySnippet('mean(12, 15, 18, 22)', this)" class="no-print mono-chip text-[11px] px-2.5 py-1 rounded-full hover:bg-white/10 cursor-pointer">Copy</button>
+                </div>
+                <p class="text-sm text-sec leading-relaxed">
+                  Type <code class="mono-chip px-1.5 py-0.5 rounded text-xs">mean(12, 15, 18, 22)</code> or <code class="mono-chip px-1.5 py-0.5 rounded text-xs">median(...)</code> directly into an expression line to compute dataset statistics without manual arithmetic.
+                </p>
+              </div>
+
+              <div class="apple-subcard apple-subcard-hover p-5">
+                <div class="font-semibold text-amber-400 text-sm mb-1.5">5. Inequality Regions</div>
+                <p class="text-sm text-sec leading-relaxed">
+                  Enter inequalities directly using <code class="mono-chip px-1.5 py-0.5 rounded text-xs">&lt;, &gt;, &lt;=, &gt;=</code> to visualize overlapping shaded solution sets and test boundary points.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Essential First-Principles Formulas & Traps -->
+        <div class="space-y-4">
+          <h3 class="text-lg sm:text-xl font-semibold">Essential First-Principles Formulas &amp; Traps</h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Linear System Ratios -->
+            <div class="apple-subcard apple-subcard-hover p-5 space-y-2">
+              <div class="font-semibold text-sky-400 text-sm">Linear System Ratios</div>
+              <p class="text-xs text-sec">For $a_1x + b_1y = c_1$ and $a_2x + b_2y = c_2$:</p>
+              <ul class="space-y-1.5 text-sm text-sec">
+                <li>• <strong>One solution:</strong> $\dfrac{a_1}{a_2} \neq \dfrac{b_1}{b_2}$</li>
+                <li>• <strong>No solution (parallel):</strong> $\dfrac{a_1}{a_2} = \dfrac{b_1}{b_2} \neq \dfrac{c_1}{c_2}$</li>
+                <li>• <strong>Infinitely many solutions (identical):</strong> $\dfrac{a_1}{a_2} = \dfrac{b_1}{b_2} = \dfrac{c_1}{c_2}$</li>
+              </ul>
+            </div>
+
+            <!-- Quadratic Forms & Discriminant -->
+            <div class="apple-subcard apple-subcard-hover p-5 space-y-2">
+              <div class="font-semibold text-indigo-400 text-sm">Quadratic Forms &amp; Discriminant</div>
+              <ul class="space-y-1.5 text-sm text-sec">
+                <li>• <strong>Standard Form:</strong> $y = ax^2 + bx + c \rightarrow$ Sum of roots $= -\frac{b}{a}$; Product of roots $= \frac{c}{a}$; Vertex $x$-coordinate $= -\frac{b}{2a}$.</li>
+                <li>• <strong>Vertex Form:</strong> $y = a(x - h)^2 + k \rightarrow$ Vertex at $(h, k)$.</li>
+                <li>• <strong>Discriminant ($D = b^2 - 4ac$):</strong> $D > 0$ gives 2 real solutions; $D = 0$ gives 1 real solution; $D < 0$ gives 0 real solutions.</li>
+              </ul>
+            </div>
+
+            <!-- Exponential Growth & Decay -->
+            <div class="apple-subcard apple-subcard-hover p-5 space-y-2">
+              <div class="font-semibold text-emerald-400 text-sm">Exponential Growth &amp; Decay</div>
+              <div class="mono-chip px-3 py-2 rounded-xl text-sm">
+                $$f(t) = a(1 \pm r)^{t/k}$$
+              </div>
+              <p class="text-sm text-sec leading-relaxed">
+                Where $a$ is the initial value, $r$ is the rate per period, and $k$ is the time required for one full growth/decay cycle (e.g., if a population doubles every 4 hours, use $2^{t/4}$).
+              </p>
+            </div>
+
+            <!-- Circle Geometry -->
+            <div class="apple-subcard apple-subcard-hover p-5 space-y-2">
+              <div class="font-semibold text-violet-400 text-sm">Circle Geometry</div>
+              <ul class="space-y-1.5 text-sm text-sec leading-relaxed">
+                <li>• <strong>Standard Circle Equation:</strong> $(x - h)^2 + (y - k)^2 = r^2$ with center $(h, k)$ and radius $r$. If given $x^2 + dx + y^2 + ey = f$, complete the square by adding $(d/2)^2 + (e/2)^2$ to both sides.</li>
+                <li>• <strong>Arc Length &amp; Sector Area:</strong> $\frac{\text{Central Angle}}{360^\circ} = \frac{\text{Arc Length}}{2\pi r} = \frac{\text{Sector Area}}{\pi r^2}$ (replace $360^\circ$ with $2\pi$ when working in radians).</li>
+              </ul>
+            </div>
+
+            <!-- Trigonometry -->
+            <div class="apple-subcard apple-subcard-hover p-5 space-y-2">
+              <div class="font-semibold text-amber-400 text-sm">Trigonometry</div>
+              <ul class="space-y-1.5 text-sm text-sec leading-relaxed">
+                <li>• <strong>Complementary Angle Identity:</strong> $\sin(x^\circ) = \cos(90^\circ - x^\circ)$. Tested frequently in right-triangle problems where angles $A$ and $B$ sum to $90^\circ$.</li>
+                <li>• <strong>Special Right Triangles:</strong> $30^\circ\text{–}60^\circ\text{–}90^\circ$ sides scale as $x : x\sqrt{3} : 2x$; $45^\circ\text{–}45^\circ\text{–}90^\circ$ sides scale as $x : x : x\sqrt{2}$.</li>
+              </ul>
+            </div>
+
+            <!-- Statistical Inference & Margin of Error -->
+            <div class="apple-subcard apple-subcard-hover p-5 space-y-2">
+              <div class="font-semibold text-cyan-400 text-sm">Statistical Inference &amp; Margin of Error</div>
+              <p class="text-sm text-sec leading-relaxed">
+                <strong>Random sampling</strong> allows generalizing results to the broader population; <strong>random assignment</strong> to treatment/control groups allows claiming cause and effect. Increasing sample size ($n$) decreases the margin of error.
+              </p>
+            </div>
+          </div>
+
+          <!-- Student-Produced Response (SPR) Formatting + Interactive SPR Checker -->
+          <div class="apple-subcard p-5 border border-amber-400/30 space-y-3.5">
+            <div class="font-semibold text-amber-400 text-sm">Student-Produced Response (SPR) Formatting Rules</div>
+            <p class="text-sm text-sec leading-relaxed">
+              Answers allow up to <strong>5 characters</strong> for positive numbers and <strong>6 characters</strong> for negative numbers (including <code class="mono-chip px-1 rounded">-</code>, <code class="mono-chip px-1 rounded">.</code>, and <code class="mono-chip px-1 rounded">/</code>). <strong>Never enter mixed numbers:</strong> write $3\frac{1}{2}$ as <code class="mono-chip px-1.5 py-0.5 rounded text-xs">7/2</code> or <code class="mono-chip px-1.5 py-0.5 rounded text-xs">3.5</code> (entering <code class="mono-chip px-1.5 py-0.5 rounded text-xs">31/2</code> is read as $31 \div 2$). Do not round intermediate steps; truncate or round only at the final character limit.
+            </p>
+
+            <!-- Interactive Bluebook SPR Entry Simulator -->
+            <div class="pt-2 border-t border-white/10 flex flex-col sm:flex-row sm:items-center gap-3 no-print">
+              <div class="text-xs font-medium text-sec shrink-0">Test SPR Entry:</div>
+              <input id="sprInput" type="text" placeholder="Try 3 1/2, 7/2, -0.3333..."
+                oninput="validateSpr(this.value)"
+                class="mono-chip rounded-xl px-3.5 py-2 text-xs outline-none w-full sm:w-56" />
+              <div id="sprResult" class="text-xs text-mut">Type any fraction or decimal to check Bluebook validity.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 05: ERROR-LOG FRAMEWORK & TEST-DAY EXECUTION
+    ========================================================= -->
+    <section id="sec-05" class="reveal space-y-6 scroll-mt-28">
+      <div class="flex items-center gap-3">
+        <span class="px-3 py-1 rounded-full mono-chip text-xs font-semibold text-sky-400">05</span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Error-Log Framework &amp; Test-Day Execution</h2>
+      </div>
+
+      <div class="apple-glass p-6 sm:p-8 space-y-8">
+        <!-- The Three-Bucket Error Log Framework -->
+        <div class="space-y-4">
+          <div>
+            <h3 class="text-lg sm:text-xl font-semibold mb-1">The Three-Bucket Error Log</h3>
+            <p class="text-sm text-sec">
+              Taking practice tests without analyzing mistakes yields minimal score gains. Log every missed or guessed question from official Bluebook Practice Tests into one of three categories:
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="apple-subcard apple-subcard-hover p-5 space-y-2 border-t-2 border-t-sky-400">
+              <div class="text-xs font-bold uppercase tracking-wider text-sky-400">1. Conceptual Gap</div>
+              <p class="text-sm text-sec leading-relaxed">
+                You did not know the underlying grammar rule, algebraic identity, or statistical definition.
+              </p>
+              <div class="pt-2 border-t border-white/10 text-xs text-sec">
+                <strong class="text-sky-400">Fix:</strong> Review the rule from first principles and solve 5 targeted drills on that specific subtopic.
+              </div>
+            </div>
+
+            <div class="apple-subcard apple-subcard-hover p-5 space-y-2 border-t-2 border-t-amber-400">
+              <div class="text-xs font-bold uppercase tracking-wider text-amber-400">2. Constraint Misread</div>
+              <p class="text-sm text-sec leading-relaxed">
+                You knew the math or reading logic, but missed a keyword—such as solving for $x$ when the question asked for $2x + 1$, missing <em>NOT</em> or <em>least</em>, or overlooking that $x > 0$.
+              </p>
+              <div class="pt-2 border-t border-white/10 text-xs text-sec">
+                <strong class="text-amber-400">Fix:</strong> Underline the exact target expression or constraint before computing.
+              </div>
+            </div>
+
+            <div class="apple-subcard apple-subcard-hover p-5 space-y-2 border-t-2 border-t-rose-400">
+              <div class="text-xs font-bold uppercase tracking-wider text-rose-400">3. Trap Attraction</div>
+              <p class="text-sm text-sec leading-relaxed">
+                You fell for a plausible distractor (e.g., an out-of-scope inference or a reversed sign).
+              </p>
+              <div class="pt-2 border-t border-white/10 text-xs text-sec">
+                <strong class="text-rose-400">Fix:</strong> Write down in one sentence why the trap choice is objectively wrong so you recognize the pattern next time.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Three-Bucket Error Logger with Live Breakdown Bar -->
+        <div class="apple-subcard p-5 sm:p-6 space-y-4 border border-indigo-400/30 no-print">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <div class="font-semibold text-base flex items-center gap-2">
+                <i data-lucide="clipboard-list" class="w-4 h-4 text-indigo-400"></i>
+                Interactive Bluebook Error Log
+              </div>
+              <p class="text-xs text-mut">Saved automatically in your browser · Export anytime as CSV</p>
+            </div>
+            <div class="flex items-center gap-2 text-xs">
+              <span id="logStats" class="mono-chip px-3 py-1 rounded-full text-sec">0 Logged</span>
+              <button onclick="exportErrorLogCSV()" class="px-3 py-1 rounded-full apple-subcard hover:bg-white/10 font-medium cursor-pointer">Export CSV</button>
+            </div>
+          </div>
+
+          <!-- Visual Bucket Distribution Bar -->
+          <div id="bucketBreakdownWrap" class="hidden space-y-1.5">
+            <div class="h-2 w-full rounded-full overflow-hidden flex bg-white/10">
+              <div id="barConcept" class="bg-sky-400 transition-all duration-300" style="width: 0%"></div>
+              <div id="barConstraint" class="bg-amber-400 transition-all duration-300" style="width: 0%"></div>
+              <div id="barTrap" class="bg-rose-400 transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <div id="bucketLegend" class="flex flex-wrap gap-4 text-[11px] text-mut"></div>
+          </div>
+
+          <form onsubmit="addErrorEntry(event)" class="grid grid-cols-1 sm:grid-cols-12 gap-2.5">
+            <select id="errSection" class="sm:col-span-2 mono-chip rounded-xl px-3 py-2 text-xs outline-none">
+              <option value="R&W">R&amp;W</option>
+              <option value="Math">Math</option>
+            </select>
+            <select id="errBucket" class="sm:col-span-3 mono-chip rounded-xl px-3 py-2 text-xs outline-none">
+              <option value="Conceptual Gap">Conceptual Gap</option>
+              <option value="Constraint Misread">Constraint Misread</option>
+              <option value="Trap Attraction">Trap Attraction</option>
+            </select>
+            <input id="errTopic" type="text" required placeholder="Topic (e.g., Semicolon vs Period)"
+              class="sm:col-span-3 mono-chip rounded-xl px-3 py-2 text-xs outline-none" />
+            <input id="errFix" type="text" required placeholder="1-Sentence Fix / Why trap was wrong"
+              class="sm:col-span-3 mono-chip rounded-xl px-3 py-2 text-xs outline-none" />
+            <button type="submit"
+              class="sm:col-span-1 rounded-xl px-3 py-2 text-xs font-semibold bg-sky-400 text-slate-950 hover:opacity-90 transition cursor-pointer">
+              Add
+            </button>
+          </form>
+
+          <div id="errorLogList" class="space-y-2 max-h-60 overflow-y-auto text-xs"></div>
+        </div>
+
+        <!-- Bluebook Interface & Pacing Checkpoints -->
+        <div class="space-y-4">
+          <h3 class="text-lg sm:text-xl font-semibold">Bluebook Interface &amp; Pacing Checkpoints</h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="apple-subcard apple-subcard-hover p-5 space-y-1.5">
+              <div class="font-semibold text-sky-400 text-sm">Use the Built-In Cross-Out Tool</div>
+              <p class="text-sm text-sec leading-relaxed">
+                Activate the Option Eliminator (<code class="mono-chip px-1.5 py-0.5 rounded text-xs">ABC</code> strikethrough icon) to visually remove eliminated choices—reducing cognitive load on dense Reading and Math questions.
+              </p>
+            </div>
+
+            <div class="apple-subcard apple-subcard-hover p-5 space-y-1.5">
+              <div class="font-semibold text-indigo-400 text-sm">Two-Pass Pacing Rule</div>
+              <p class="text-sm text-sec leading-relaxed">
+                Never spend more than <strong>90 seconds</strong> stuck on a single question during your first pass. Pick your best estimate, click <strong>Mark for Review</strong>, and keep moving so you never sacrifice easy points at the end of a module.
+              </p>
+            </div>
+          </div>
+
+          <!-- Target Checkpoints + Live Practice Timer -->
+          <div class="apple-subcard p-5 sm:p-6 space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <div class="font-semibold text-base">Target Module Checkpoints &amp; Practice Timer</div>
+                <p class="text-xs text-sec">Simulate official Bluebook countdown pacing with checkpoint milestones</p>
+              </div>
+              <div class="flex items-center gap-2 no-print">
+                <button onclick="setTimerMode('rw')" id="tmRwBtn" class="seg-btn active px-3 py-1.5 text-xs font-medium cursor-pointer">R&amp;W (32:00)</button>
+                <button onclick="setTimerMode('math')" id="tmMathBtn" class="seg-btn px-3 py-1.5 text-xs font-medium cursor-pointer">Math (35:00)</button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
+              <!-- Live Countdown Display -->
+              <div class="lg:col-span-5 mono-chip rounded-2xl p-4 space-y-3 no-print">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div id="timerModeLabel" class="text-[11px] uppercase tracking-wider text-sky-400 font-semibold">Reading &amp; Writing Module</div>
+                    <div id="timerDisplay" class="text-3xl font-bold tracking-tight mt-0.5">32:00</div>
+                    <div id="timerCheckpointHint" class="text-[11px] text-mut mt-0.5">Checkpoint 1: Finish Q15–Q27 by 22:00 left</div>
+                  </div>
+                  <div class="flex flex-col gap-1.5">
+                    <button onclick="toggleTimer()" id="timerStartBtn" class="px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-400 text-slate-950 cursor-pointer">Start</button>
+                    <button onclick="resetTimer()" class="px-3.5 py-1.5 rounded-full text-xs apple-subcard hover:bg-white/10 cursor-pointer">Reset</button>
+                  </div>
+                </div>
+                <div class="h-1.5 w-full rounded-full bg-white/10 overflow-hidden">
+                  <div id="timerProgressBar" class="h-full bg-gradient-to-r from-emerald-400 to-sky-400 transition-all duration-500" style="width: 100%;"></div>
+                </div>
+              </div>
+
+              <!-- Checkpoint Rules -->
+              <div class="lg:col-span-7 space-y-2.5 text-sm text-sec">
+                <div class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+                  <strong class="text-sky-400">Reading &amp; Writing (32 mins):</strong> Finish Q15–Q27 by <code class="mono-chip px-1.5 py-0.5 rounded text-xs">22:00</code> remaining; finish Q1–Q14 by <code class="mono-chip px-1.5 py-0.5 rounded text-xs">4:00</code> remaining; use the final 4 minutes for flagged questions.
+                </div>
+                <div class="p-3.5 rounded-xl bg-white/5 border border-white/10">
+                  <strong class="text-indigo-400">Math (35 mins):</strong> Finish Q1–Q15 by <code class="mono-chip px-1.5 py-0.5 rounded text-xs">17:00</code> remaining; finish Q16–Q22 by <code class="mono-chip px-1.5 py-0.5 rounded text-xs">5:00</code> remaining; use the final 5 minutes to verify SPR entries and re-check flagged problems.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT / AUTHOR ECA CARD & FOOTER -->
+    <footer class="reveal apple-glass p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs">
+      <div class="space-y-1">
+        <div class="text-sm font-semibold">The Digital SAT Playbook · First-Principles Study &amp; Strategy Guide</div>
+        <div class="text-sec">Authored by <strong class="text-sky-400">Prabhakar Sana</strong> (SAT 1540 · 790 Math, 750 EBRW) — built as an open-access resource to help students master test-taking intuition rather than rote memorization.</div>
+      </div>
+      <div class="flex items-center gap-2 shrink-0 no-print">
+        <a href="#top" class="px-3.5 py-2 rounded-full apple-subcard hover:bg-white/10 font-medium transition">Back to Top ↑</a>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Specular Mouse Sheen on Apple Glass Cards
+    document.querySelectorAll('.apple-glass').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+      });
+    });
+
+    // Theme Toggle (Dark / Frosted Daylight) with Persistence
+    function applyTheme(isLight) {
+      const html = document.documentElement;
+      html.classList.toggle('light', isLight);
+      html.classList.toggle('dark', !isLight);
+      const icon = document.getElementById('themeIcon');
+      icon.setAttribute('data-lucide', isLight ? 'moon' : 'sun');
+      icon.className = isLight ? 'w-4 h-4 text-indigo-600' : 'w-4 h-4 text-amber-300';
+      lucide.createIcons();
+    }
+    const savedTheme = localStorage.getItem('sat_playbook_theme');
+    if (savedTheme === 'light') applyTheme(true);
+
+    function toggleTheme() {
+      const willBeLight = !document.documentElement.classList.contains('light');
+      localStorage.setItem('sat_playbook_theme', willBeLight ? 'light' : 'dark');
+      applyTheme(willBeLight);
+    }
+
+    // Scroll Reveal + Scroll Progress Bar + Active Nav Scroll-Spy
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    const sectionIds = ['sec-01', 'sec-02', 'sec-03', 'sec-04', 'sec-05'];
+    window.addEventListener('scroll', () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, Math.max(0, (window.scrollY / docHeight) * 100)) : 0;
+      document.getElementById('readProgressBar').style.width = pct + '%';
+
+      let currentId = '';
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 200) currentId = id;
+      }
+      document.querySelectorAll('[data-nav]').forEach(link => {
+        link.classList.toggle('active-nav', link.getAttribute('data-nav') === currentId);
+      });
+    }, { passive: true });
+
+    // Section 01: Interactive MST Adaptive Score Simulator
+    function updateMstSim() {
+      const m1 = parseInt(document.getElementById('m1Slider').value, 10);
+      const m2 = parseInt(document.getElementById('m2Slider').value, 10);
+      document.getElementById('m1PctLabel').textContent = m1 + '%';
+      document.getElementById('m2PctLabel').textContent = m2 + '%';
+
+      const box = document.getElementById('mstVisualizer');
+      const badge = document.getElementById('mstRouteBadge');
+      const scoreEl = document.getElementById('mstEstScore');
+      const noteEl = document.getElementById('mstCeilingNote');
+      const iconEl = document.getElementById('mstRouteIcon');
+
+      const routedUpper = m1 >= 67;
+      if (routedUpper) {
+        box.className = 'apple-subcard p-5 sm:p-6 border border-sky-400/30 bg-sky-400/5 space-y-4';
+        badge.className = 'text-[11px] font-bold uppercase tracking-wider text-emerald-400';
+        badge.textContent = 'Upper Module 2 Routed';
+        const est = Math.round((560 + ((m1 - 67) / 33) * 90 + (m2 / 100) * 150) / 10) * 10;
+        scoreEl.textContent = '~' + Math.min(800, Math.max(580, est));
+        noteEl.textContent = 'Section ceiling unlocked: up to 800';
+        iconEl.setAttribute('data-lucide', 'arrow-up-right');
+        iconEl.className = 'w-8 h-8 text-emerald-400 shrink-0';
+      } else {
+        box.className = 'apple-subcard p-5 sm:p-6 border border-amber-400/35 bg-amber-400/5 space-y-4';
+        badge.className = 'text-[11px] font-bold uppercase tracking-wider text-amber-400';
+        badge.textContent = 'Lower Module 2 Routed (Capped)';
+        const est = Math.round((200 + (m1 / 66) * 210 + (m2 / 100) * 210) / 10) * 10;
+        scoreEl.textContent = '~' + Math.min(630, Math.max(200, est));
+        noteEl.textContent = 'Capped around ~560–650 even at 100% M2';
+        iconEl.setAttribute('data-lucide', 'alert-triangle');
+        iconEl.className = 'w-8 h-8 text-amber-400 shrink-0';
+      }
+      lucide.createIcons();
+    }
+    updateMstSim();
+
+    // Section 02: Interactive Trap-Spotter Practice Drill with Bluebook ABC Eliminator
+    const trapChoices = [
+      { id: 'A', text: 'Rooftop gardens completely eliminate urban heat islands in every city.', trap: 'Too Extreme ("completely", "every")', correct: false },
+      { id: 'B', text: 'Frequent irrigation is the primary reason cities install rooftop gardens.', trap: 'Reversed Relationship / Out of Scope', correct: false },
+      { id: 'C', text: 'Rooftop gardens reduce air temperatures by 1–2°C regardless of maintenance.', trap: 'Half-Right, Half-Wrong ("regardless of maintenance" contradicts text)', correct: false },
+      { id: 'D', text: 'The temperature-lowering effect of rooftop gardens varies with how often they are watered.', trap: '100% Supported by Literal Text', correct: true }
+    ];
+    const crossedOut = new Set();
+
+    function renderTrapDrill() {
+      const container = document.getElementById('trapDrillOptions');
+      container.innerHTML = trapChoices.map(c => {
+        const isCrossed = crossedOut.has(c.id);
+        return `
+          <div class="flex items-center gap-2">
+            <button onclick="checkTrapChoice('${c.id}')"
+              class="flex-1 text-left p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition cursor-pointer ${isCrossed ? 'opacity-40 line-through' : ''}">
+              <span class="font-bold text-sky-400 mr-2">${c.id}.</span>${c.text}
+            </button>
+            <button onclick="toggleCrossOut('${c.id}')" title="Option Eliminator (Cross Out)"
+              class="mono-chip px-2.5 py-2.5 rounded-xl text-[11px] hover:bg-white/10 cursor-pointer ${isCrossed ? 'text-rose-400 border-rose-400/40' : 'text-mut'}">
+              <s>ABC</s>
+            </button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleCrossOut(id) {
+      if (crossedOut.has(id)) crossedOut.delete(id);
+      else crossedOut.add(id);
+      renderTrapDrill();
+    }
+
+    function checkTrapChoice(id) {
+      const choice = trapChoices.find(c => c.id === id);
+      const fb = document.getElementById('trapDrillFeedback');
+      fb.classList.remove('hidden');
+      if (choice.correct) {
+        fb.innerHTML = `<span class="text-emerald-400 font-semibold">Correct (${choice.id}):</span> ${choice.trap}.`;
+      } else {
+        fb.innerHTML = `<span class="text-rose-400 font-semibold">Trap Spotted (${choice.id} — ${choice.trap}):</span> Use the <s>ABC</s> button to cross it out and test another choice.`;
+      }
+    }
+    renderTrapDrill();
+
+    // Section 03: Grammar Tabs
+    function selectGrammarTab(idx) {
+      for (let i = 0; i < 4; i++) {
+        document.getElementById('gTab' + i).classList.toggle('active', i === idx);
+        document.getElementById('gPanel' + i).classList.toggle('hidden', i !== idx);
+      }
+    }
+
+    // Section 04: Desmos Drawer & Snippet Copy
+    function toggleDesmos() {
+      const lab = document.getElementById('desmosLab');
+      const frame = document.getElementById('desmosFrame');
+      const label = document.getElementById('desmosBtnLabel');
+      const willOpen = lab.classList.contains('hidden');
+
+      if (willOpen) {
+        if (!frame.src) frame.src = frame.getAttribute('data-src');
+        lab.classList.remove('hidden');
+        label.textContent = 'Hide Desmos Lab';
+      } else {
+        lab.classList.add('hidden');
+        label.textContent = 'Launch Interactive Desmos Lab';
+      }
+    }
+
+    function copySnippet(text, btn) {
+      navigator.clipboard.writeText(text);
+      const orig = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = orig; }, 1400);
+    }
+
+    // Section 04: Interactive Bluebook SPR Validator
+    function validateSpr(raw) {
+      const out = document.getElementById('sprResult');
+      const val = raw.trim();
+      if (!val) {
+        out.className = 'text-xs text-mut';
+        out.textContent = 'Type any fraction or decimal to check Bluebook validity.';
+        return;
+      }
+      if (/\s/.test(val)) {
+        out.className = 'text-xs text-rose-400 font-medium';
+        out.textContent = 'Invalid: Spaces/mixed numbers are not allowed. Convert to improper fraction (e.g., 7/2) or decimal (3.5).';
+        return;
+      }
+      const isNeg = val.startsWith('-');
+      const maxLen = isNeg ? 6 : 5;
+      if (val.length > maxLen) {
+        out.className = 'text-xs text-rose-400 font-medium';
+        out.textContent = `Too long (${val.length} chars): Bluebook allows max ${maxLen} characters for ${isNeg ? 'negative' : 'positive'} answers.`;
+        return;
+      }
+      if (!/^-?(\d+(\.\d+)?|\.\d+|\d+\/\d+)$/.test(val)) {
+        out.className = 'text-xs text-rose-400 font-medium';
+        out.textContent = 'Invalid characters: Only digits, "-", ".", and "/" are accepted.';
+        return;
+      }
+      out.className = 'text-xs text-emerald-400 font-medium';
+      out.textContent = `Valid Bluebook SPR entry (${val.length}/${maxLen} characters used).`;
+    }
+
+    // Section 05: Three-Bucket Error Log (localStorage) + Visual Distribution Bar
+    let errorEntries = JSON.parse(localStorage.getItem('sat_playbook_errors') || '[]');
+
+    function renderErrorLog() {
+      const list = document.getElementById('errorLogList');
+      const stats = document.getElementById('logStats');
+      const wrap = document.getElementById('bucketBreakdownWrap');
+      stats.textContent = `${errorEntries.length} Logged`;
+
+      if (errorEntries.length === 0) {
+        wrap.classList.add('hidden');
+        list.innerHTML = `<div class="text-center py-4 text-mut">No missed questions logged yet. Add your first Bluebook mistake above to track patterns.</div>`;
+        return;
+      }
+
+      wrap.classList.remove('hidden');
+      const counts = { 'Conceptual Gap': 0, 'Constraint Misread': 0, 'Trap Attraction': 0 };
+      errorEntries.forEach(e => { if (counts[e.bucket] !== undefined) counts[e.bucket]++; });
+      const total = errorEntries.length;
+      const p1 = Math.round((counts['Conceptual Gap'] / total) * 100);
+      const p2 = Math.round((counts['Constraint Misread'] / total) * 100);
+      const p3 = Math.max(0, 100 - p1 - p2);
+
+      document.getElementById('barConcept').style.width = p1 + '%';
+      document.getElementById('barConstraint').style.width = p2 + '%';
+      document.getElementById('barTrap').style.width = p3 + '%';
+      document.getElementById('bucketLegend').innerHTML = `
+        <span class="text-sky-400">● Conceptual Gap: ${counts['Conceptual Gap']} (${p1}%)</span>
+        <span class="text-amber-400">● Constraint Misread: ${counts['Constraint Misread']} (${p2}%)</span>
+        <span class="text-rose-400">● Trap Attraction: ${counts['Trap Attraction']} (${p3}%)</span>
+      `;
+
+      const badgeColor = {
+        'Conceptual Gap': 'text-sky-400 border-sky-400/30',
+        'Constraint Misread': 'text-amber-400 border-amber-400/30',
+        'Trap Attraction': 'text-rose-400 border-rose-400/30'
+      };
+
+      list.innerHTML = errorEntries.map((item, idx) => `
+        <div class="p-3 rounded-xl bg-white/5 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div class="space-y-0.5">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="mono-chip px-2 py-0.5 rounded font-semibold">${item.section}</span>
+              <span class="px-2 py-0.5 rounded-full border text-[11px] font-medium ${badgeColor[item.bucket] || ''}">${item.bucket}</span>
+              <span class="font-semibold">${item.topic}</span>
+            </div>
+            <div class="text-sec">Fix: ${item.fix}</div>
+          </div>
+          <button onclick="deleteErrorEntry(${idx})" class="text-mut hover:text-rose-400 self-end sm:self-center px-2 py-1 cursor-pointer">Remove</button>
+        </div>
+      `).join('');
+    }
+
+    function addErrorEntry(e) {
+      e.preventDefault();
+      const section = document.getElementById('errSection').value;
+      const bucket = document.getElementById('errBucket').value;
+      const topic = document.getElementById('errTopic').value.trim();
+      const fix = document.getElementById('errFix').value.trim();
+      if (!topic || !fix) return;
+
+      errorEntries.unshift({ section, bucket, topic, fix, date: new Date().toISOString().slice(0, 10) });
+      localStorage.setItem('sat_playbook_errors', JSON.stringify(errorEntries));
+      document.getElementById('errTopic').value = '';
+      document.getElementById('errFix').value = '';
+      renderErrorLog();
+    }
+
+    function deleteErrorEntry(idx) {
+      errorEntries.splice(idx, 1);
+      localStorage.setItem('sat_playbook_errors', JSON.stringify(errorEntries));
+      renderErrorLog();
+    }
+
+    function exportErrorLogCSV() {
+      if (errorEntries.length === 0) return alert('Add at least one entry before exporting.');
+      const rows = [['Date', 'Section', 'Bucket', 'Topic', 'Fix']];
+      errorEntries.forEach(e => rows.push([e.date, e.section, e.bucket, `"${e.topic.replace(/"/g, '""')}"`, `"${e.fix.replace(/"/g, '""')}"`]));
+      const blob = new Blob([rows.map(r => r.join(',')).join('\n')], { type: 'text/csv' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'digital-sat-error-log.csv';
+      a.click();
+    }
+    renderErrorLog();
+
+    // Section 05: Bluebook Countdown Timer + Progress Bar
+    let timerMode = 'rw';
+    let secondsLeft = 32 * 60;
+    let timerInterval = null;
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    function updateTimerUI() {
+      document.getElementById('timerDisplay').textContent = formatTime(secondsLeft);
+      const totalSec = (timerMode === 'rw' ? 32 : 35) * 60;
+      document.getElementById('timerProgressBar').style.width = ((secondsLeft / totalSec) * 100) + '%';
+
+      const hint = document.getElementById('timerCheckpointHint');
+      if (timerMode === 'rw') {
+        if (secondsLeft > 22 * 60) hint.textContent = 'Checkpoint 1: Finish Q15–Q27 by 22:00 left';
+        else if (secondsLeft > 4 * 60) hint.textContent = 'Checkpoint 2: Finish Q1–Q14 by 4:00 left';
+        else hint.textContent = 'Final Pass: Review flagged questions';
+      } else {
+        if (secondsLeft > 17 * 60) hint.textContent = 'Checkpoint 1: Finish Q1–Q15 by 17:00 left';
+        else if (secondsLeft > 5 * 60) hint.textContent = 'Checkpoint 2: Finish Q16–Q22 by 5:00 left';
+        else hint.textContent = 'Final Pass: Verify SPR entries & flagged items';
+      }
+    }
+
+    function setTimerMode(mode) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      document.getElementById('timerStartBtn').textContent = 'Start';
+      timerMode = mode;
+      document.getElementById('tmRwBtn').classList.toggle('active', mode === 'rw');
+      document.getElementById('tmMathBtn').classList.toggle('active', mode === 'math');
+      document.getElementById('timerModeLabel').textContent = mode === 'rw' ? 'Reading & Writing Module' : 'Math Module';
+      secondsLeft = (mode === 'rw' ? 32 : 35) * 60;
+      updateTimerUI();
+    }
+
+    function toggleTimer() {
+      const btn = document.getElementById('timerStartBtn');
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        btn.textContent = 'Resume';
+      } else {
+        btn.textContent = 'Pause';
+        timerInterval = setInterval(() => {
+          if (secondsLeft > 0) {
+            secondsLeft--;
+            updateTimerUI();
+          } else {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            btn.textContent = 'Done';
+          }
+        }, 1000);
+      }
+    }
+
+    function resetTimer() {
+      setTimerMode(timerMode);
+    }
+
+    // Quick Spotlight Search (⌘K)
+    const searchIndex = [
+      { title: 'Multistage Adaptive Testing (MST) & Score Ceiling', sec: '01 · Architecture', href: '#sec-01', desc: 'Hard Module 2 unlocks 800; Easy Module 2 caps score at ~560–650.' },
+      { title: 'Item Response Theory (IRT) Weighting', sec: '01 · Architecture', href: '#sec-01', desc: 'Missing easy/medium questions in Module 1 hurts much more than late hard items.' },
+      { title: 'High-Leverage Reading & Writing Pacing Order', sec: '02 · Reading & Writing', href: '#sec-02', desc: 'Jump to Q15–Q27 first (8–10 mins), leaving 22–24 mins for Q1–Q14.' },
+      { title: 'Four Reading Wrong-Answer Traps', sec: '02 · Reading & Writing', href: '#sec-02', desc: 'Too Extreme, Out of Scope, Reversed Relationship, Half-Right Half-Wrong.' },
+      { title: 'Rhetorical Synthesis (Student Notes) 70% Rule', sec: '02 · Reading & Writing', href: '#sec-02', desc: 'Read the prompt goal first; in ~70% of questions only one option matches the goal.' },
+      { title: 'Equivalence Elimination Rule (. vs ;)', sec: '03 · Grammar', href: '#sec-03', desc: 'If two choices differ only by a period vs. semicolon, both are automatically wrong.' },
+      { title: 'Four Ways to Join Independent Clauses', sec: '03 · Grammar', href: '#sec-03', desc: 'Period, Semicolon, Comma + FANBOYS, or Colon / Single Em-Dash.' },
+      { title: 'Dangling Modifiers & Subject-Verb Agreement', sec: '03 · Grammar', href: '#sec-03', desc: 'First noun after introductory phrase must perform the action; strip prepositional phrases.' },
+      { title: 'Desmos Regression (~) for Unknown Constants', sec: '04 · Math & Desmos', href: '#sec-04', desc: 'Create table x1, y1 and run y1 ~ a*x1^2 + b*x1 + c to solve constants instantly.' },
+      { title: 'Linear System Ratios (No / Infinite Solutions)', sec: '04 · Math & Desmos', href: '#sec-04', desc: 'Parallel: a1/a2 = b1/b2 != c1/c2; Identical: a1/a2 = b1/b2 = c1/c2.' },
+      { title: 'Quadratic Discriminant & Vertex Formulas', sec: '04 · Math & Desmos', href: '#sec-04', desc: 'Sum = -b/a, Product = c/a, Vertex x = -b/(2a), Discriminant D = b^2 - 4ac.' },
+      { title: 'Circle Equation & Completing the Square', sec: '04 · Math & Desmos', href: '#sec-04', desc: '(x-h)^2 + (y-k)^2 = r^2; add (d/2)^2 + (e/2)^2 to both sides.' },
+      { title: 'Student-Produced Response (SPR) Formatting', sec: '04 · Math & Desmos', href: '#sec-04', desc: 'Max 5 chars positive, 6 negative. Never enter mixed numbers (write 7/2, not 31/2).' },
+      { title: 'Three-Bucket Error Log & Bluebook Checkpoints', sec: '05 · Error Log', href: '#sec-05', desc: 'Conceptual Gap, Constraint Misread, Trap Attraction + 22:00 / 4:00 & 17:00 / 5:00 checkpoints.' }
+    ];
+
+    function openSearchModal() {
+      const modal = document.getElementById('searchModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      const input = document.getElementById('searchInput');
+      input.value = '';
+      filterSearch('');
+      setTimeout(() => input.focus(), 50);
+    }
+
+    function closeSearchModal(e) {
+      const modal = document.getElementById('searchModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function filterSearch(query) {
+      const q = query.toLowerCase().trim();
+      const matches = searchIndex.filter(item =>
+        item.title.toLowerCase().includes(q) ||
+        item.desc.toLowerCase().includes(q) ||
+        item.sec.toLowerCase().includes(q)
+      );
+      document.getElementById('searchResults').innerHTML = matches.map(m => `
+        <a href="${m.href}" onclick="closeSearchModal()" class="block p-3 rounded-2xl apple-subcard hover:bg-white/10 transition">
+          <div class="flex items-center justify-between text-xs text-sky-400 font-medium mb-0.5">
+            <span>${m.title}</span>
+            <span class="text-mut">${m.sec}</span>
+          </div>
+          <div class="text-xs text-sec">${m.desc}</div>
+        </a>
+      `).join('') || `<div class="text-center py-6 text-mut text-xs">No matching playbook rules found.</div>`;
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        openSearchModal();
+      } else if (e.key === 'Escape') {
+        closeSearchModal();
+      }
+    });
+  </script>
+</body>
+</html>
